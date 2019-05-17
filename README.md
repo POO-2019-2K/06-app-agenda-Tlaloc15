@@ -1,6 +1,8 @@
 # Ejercicio 6 La Agenda
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a4e10ed41b624c6894e11ddcf088b010)](https://www.codacy.com/app/Tlaloc15/06-app-agenda-Tlaloc15?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=POO-2019-2K/06-app-agenda-Tlaloc15&amp;utm_campaign=Badge_Grade)
 
+[![codebeat badge](https://codebeat.co/badges/4e3d6bd9-5fb6-4af8-ad63-dc4fe4b18877)](https://codebeat.co/projects/github-com-poo-2019-2k-06-app-agenda-tlaloc15-master)
+
 
 ## Tiempo para realizar la actividad
 
