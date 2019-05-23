@@ -1,4 +1,5 @@
 import Contacto from "./contactos.js";
+import Agenda from "./Agenda.js";
 
 class Main{
     constructor() {
@@ -6,10 +7,10 @@ class Main{
         document.querySelector('#btnAgregar').addEventListener('click', () => {
             let form = document.querySelector('#form');
 
-            if(form.checkValidaty() === true) {
+            if (form.checkValidity() === true) {
                 let nombre = document.querySelector('#name').value;
                 let correo = document.querySelector('#correo').value;
-                let sCumple = document.querySelector('#cumpleaños').value;
+                let sCumple = document.querySelector('#cumpleanios').value;
                 sCumple = sCumple.split('-');
 
                 let cumple = new Date(sCumple[0], sCumple[1], sCumple[2]);
@@ -22,9 +23,10 @@ class Main{
 
                 let contacto = new Contacto(objContacto);
 
-                contacto.
+                Agenda2.agregarCo(contacto);
 
             }
+            form.classList.add("was-validated");
             
            })
 
