@@ -1,9 +1,11 @@
 import Contacto from "./contactos.js";
 export default class Agenda{
-    constructor(Agenda){
+    constructor(Agenda, Contar){
         this._tablaAgenda = Agenda;
+        this._tablaContar = Contar;
         this._contactos = [];
-
+        this._numRegis = 0;
+        //localStorage.removeItem("contacto");
         this._tablaIncio();
     }
 
@@ -12,7 +14,7 @@ export default class Agenda{
         if (lsContacto === null) {
             return;
         }
-        lsContacto.forEach((c, index) => {
+        lsContacto.forEach((c) => {
 
             ///if (e.taller === this._nameTaller || e.taller === undefined) {
                 c.cumple = new Date(c.cumple);
@@ -20,7 +22,6 @@ export default class Agenda{
                this._agregarTa(new Contacto(c));
         });
     }
-
 
     _quitarFila(fila, contacto){
       let btnQuitar = document.createElement('input');
@@ -52,17 +53,42 @@ export default class Agenda{
         celCorreo.innerHTML = contacto.correo;
         celCumple.innerHTML = contacto.obCumpleS();
         celEdad.innerHTML = contacto.obEdad();
-
-
         this._quitarFila(fila, contacto)
+        this._numRegis++;
+        this._tablaContar.rows[0].cells[1].innerHTML = this._numRegis;
 
        let objContacto = {
           nombre: contacto.nombre,
           correo: contacto.correo,
-          cumple: contacto.cumple
+          cumple: contacto.cumple,
+          edad: contacto.obEdad()
         };
 
         this._contactos.push(objContacto);
+    }
+
+    _admin(Tipo) {
+      var orden = this._contactos.slice(-this._numRegis);
+      if (Tipo === 1) {
+        orden.sort(function(a, b) {
+          return a.nombre.localeCompare(b.nombre);
+        });
+      }else if (Tipo === 2) {
+        orden.sort(function(a, b) {
+          return a.edad - b.edad;
+        });
+      }
+      this._limpiarTo();
+      localStorage.setItem("contacto", JSON.stringify(orden));
+      this._tablaIncio();
+    }
+    _limpiarTo() {
+      var i;
+      console.log(this._numRegis)
+      for(i = this._numRegis; i >= 1; i--) {
+        this._tablaAgenda.deleteRow(i);
+      }
+      this._numRegis = 0;
     }
 
     _buscar(correo) {
@@ -79,8 +105,6 @@ export default class Agenda{
         return lugar;
       }
     
-    
-    
       agregarCo(contacto) {
         let buscar = this._buscar(contacto.correo);
     
@@ -93,8 +117,7 @@ export default class Agenda{
           return;
         }
     
-    
         this._agregarTa(contacto);
         localStorage.setItem("contacto", JSON.stringify(this._contactos));
       }
-}
+    }

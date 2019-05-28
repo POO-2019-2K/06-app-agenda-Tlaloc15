@@ -3,7 +3,10 @@ import Agenda from "./Agenda.js";
 
 class Main{
     constructor() {
-        let Agenda2 = new Agenda( document.querySelector('#agenda') );
+        let Agenda2 = new Agenda( 
+            document.querySelector('#agenda'),
+            document.querySelector('#numRegis')
+            );
         document.querySelector('#btnAgregar').addEventListener('click', () => {
             let form = document.querySelector('#form');
 
@@ -24,12 +27,27 @@ class Main{
                 let contacto = new Contacto(objContacto);
 
                 Agenda2.agregarCo(contacto);
-
             }
-            form.classList.add("was-validated");
-            
-           })
 
+            form.classList.add("was-validated");
+           });
+
+           var select = document.getElementById("Tipo");
+           select.addEventListener("change", () => {
+               var Tipo = select.value;
+               if (Tipo === "Nombre") {
+                   Tipo = 1;
+               }else if (Tipo === "Edad") {
+                   Tipo = 2;
+               }else {
+                   swal.fire({
+                       type: "error" ,
+                       title: "No seleccionó el orden en que se ordenará la lista"
+                   })
+               }
+               console.log( Tipo)
+               Agenda2._admin(Tipo);
+           })
     }
 }
 new Main();
