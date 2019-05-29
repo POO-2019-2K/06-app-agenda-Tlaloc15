@@ -35,8 +35,8 @@ export default class Agenda{
 
             return;
       });
-      fila.cells[4].innerHTML = "";
-      fila.cells[4].appendChild(btnQuitar);
+      fila.cells[5].innerHTML = "";
+      fila.cells[5].appendChild(btnQuitar);
     }
 
     _agregarTa(contacto) {
@@ -45,13 +45,15 @@ export default class Agenda{
         let celNombre = fila.insertCell(0);
         let celCorreo = fila.insertCell(1);
         let celCumple = fila.insertCell(2);
-        let celEdad = fila.insertCell(3);
+        let celCelular = fila.insertCell(3);
+        let celEdad = fila.insertCell(4);
 
-        fila.insertCell(4);
+        fila.insertCell(5);
 
         celNombre.innerHTML = contacto.nombre;
         celCorreo.innerHTML = contacto.correo;
         celCumple.innerHTML = contacto.obCumpleS();
+        celCelular.innerHTML = contacto.celular;
         celEdad.innerHTML = contacto.obEdad();
         this._quitarFila(fila, contacto)
         this._numRegis++;
@@ -61,6 +63,7 @@ export default class Agenda{
           nombre: contacto.nombre,
           correo: contacto.correo,
           cumple: contacto.cumple,
+          celular: contacto.celular,
           edad: contacto.obEdad()
         };
 

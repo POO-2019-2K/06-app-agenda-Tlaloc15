@@ -2,6 +2,7 @@ export default class Contacto{
     constructor(contactos){
         this._nombre = contactos.nombre;
         this._correo = contactos.correo;
+        this._celular = contactos.celular;
         this._cumple = contactos.cumple;
 
         this._cumple = new Date(contactos.cumple);
@@ -25,6 +26,9 @@ export default class Contacto{
     }
     get correo() {
         return this._correo;
+    }
+    get celular() {
+      return this._celular;
     }
     get cumple() {
         return this._cumple;

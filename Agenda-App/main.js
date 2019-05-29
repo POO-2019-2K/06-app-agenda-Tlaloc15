@@ -13,6 +13,7 @@ class Main{
             if (form.checkValidity() === true) {
                 let nombre = document.querySelector('#name').value;
                 let correo = document.querySelector('#correo').value;
+                let celular = document.querySelector('#celular').value;
                 let sCumple = document.querySelector('#cumpleanios').value;
                 sCumple = sCumple.split('-');
 
@@ -21,6 +22,7 @@ class Main{
                 let objContacto = {
                     nombre: nombre,
                     correo: correo,
+                    celular: celular,
                     cumple: cumple
                 };
 
